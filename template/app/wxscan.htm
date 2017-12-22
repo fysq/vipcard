@@ -95,7 +95,7 @@
 	  		    		$.post('{AJAX}&m=scancz', {uid:uid,adminid:adminid,cznum:cznum,cztype:cztype}, function(e) {
 	  		    			if(e.code=="1"){
 	  		    				$.toast(e.msg);
-	  		    				location.reload();
+	  		    				myreload();
 	  		    			}else{
 	  		    				$.toast(e.msg,"text");
 	  		    			}
@@ -215,7 +215,7 @@
 	  		    		$.post('{AJAX}&m=scanxf', {uid:uid,adminid:adminid,consumenum:consumenum,pointbl:pointbl}, function(e) {
 	  		    			if(e.code=="1"){
 	  		    				$.toast(e.msg);
-	  		    				location.reload();
+	  		    				myreload();
 	  		    			}else{
 	  		    				$.toast(e.msg,"text");
 	  		    			}
