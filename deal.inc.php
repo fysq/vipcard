@@ -89,6 +89,19 @@ switch ($m) {
 			$res['msg']=urlencode(dirname($_SERVER['HTTP_REFERER'])."/plugin.php?id=vipcard&a=recharge&uid=".$uid);
 			echo json_encode($res);
 		break;
+	case 'editshopinfo':
+			DB::query("UPDATE m_vipcard_setting SET val = '$shopinfo' WHERE skey = 'shopinfo'");
+			$res['code']="1";
+			$res['msg']="编辑成功";
+			echo json_encode($res);
+		break;
+	case 'editbase':
+			DB::query("UPDATE m_vipcard_setting SET val = '$cardname' WHERE skey = 'cardname'");
+			DB::query("UPDATE m_vipcard_setting SET val = '$pointbl' WHERE skey = 'pointbl'");
+			$res['code']="1";
+			$res['msg']="编辑成功";
+			echo json_encode($res);
+		break;
 	default:
 		echo json_encode($_POST);
 		break;

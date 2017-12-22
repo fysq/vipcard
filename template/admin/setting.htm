@@ -52,6 +52,64 @@
 		</div>
 	</form>
 	<div class="clear"></div>
+	<div class="toptit">基础设置</div>
+	<form id="st3" class="form_main">
+		<div class="w100">
+			<div class="fml">会员卡名称</div>
+			<div class="fmr"><input name="cardname" type="text"  class="input_text_default cardname" value="{$setting['cardname']}"></div>
+		</div>
+		<div class="w100">
+			<div class="fml">消费积分比例</div>
+			<div class="fmr"><input name="pointbl" type="text"  class="input_text_default pointbl" value="{$setting['pointbl']}"></div>
+		</div>
+		<div>
+			<div class="fml"></div>
+			<div class="fmr"><input type="button" class="admin_submit sub3" value="提交"></div>
+		</div>
+	</form>
+	<div class="clear"></div>
+	<div class="toptit">等级设置</div>
+	<form id="st4" class="form_main">
+		<table class="table_">
+			<tr>
+				<td>等级</td>
+				<td>名称</td>
+				<td>升级消耗积分</td>
+				<td>优惠折扣</td>
+			</tr>
+			{eval $viplist = array_filter(explode("|",$setting['viplist']))}
+			{loop $}
+			<tr>
+				<td>1</td>
+				<td><input type="text" name="vipname[]" value="默认会员组"></td>
+				<td><input type="text" name="vippoint[]" value="0"></td>
+				<td><input type="text" name="vipzk[]" value="0.88"></td>
+			</tr>
+			{/loop}
+			<tr>
+				<td></td>
+				<td><input type="text" name="vipname[]" placeholder="会员组名称"></td>
+				<td><input type="text" name="vippoint[]" placeholder=""></td>
+				<td><input type="text" name="vipzk[]" placeholder=""></td>
+			</tr>
+		</table>
+		<div>
+			<div class="fml"></div>
+			<div class="fmr"><input type="button" class="admin_submit sub5" value="提交"></div>
+		</div>
+	</form>
+	<div class="clear"></div>
+	<div class="toptit">店铺设置</div>
+	<form id="st5" class="form_main">
+		<div class="w100"><div class="fml"></div>
+			<div class="fmr"><textarea name="shopinfo" id="shopinfo" cols="30" rows="10">{$setting['shopinfo']}</textarea></div>
+		</div>
+		<div>
+			<div class="fml"></div>
+			<div class="fmr"><input type="button" class="admin_submit sub5" value="提交"></div>
+		</div>
+	</form>
+	<div class="clear"></div>
 	
 
 	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
@@ -60,6 +118,29 @@
 		$(".sub2").click(function(){
 			addphone = $("#st2").find(".addphone").val().trim();
 			$.post('{AJAX}',{m:"addadminphone",addphone:addphone}, function(e) {
+				alert(e.msg);
+				if(e.code=="1"){
+					location.reload();
+				}
+			},'json');
+		});
+		// 基础设置
+		$(".sub3").click(function(){
+			cardname = $("#st3").find(".cardname").val().trim();
+			pointbl = $("#st3").find(".pointbl").val().trim();
+			$.post('{AJAX}',{m:"editbase",cardname:cardname,pointbl:pointbl}, function(e) {
+				alert(e.msg);
+				if(e.code=="1"){
+					location.reload();
+				}
+			},'json');
+		});
+
+		// 店铺设置
+		$(".sub5").click(function(){
+			editor.sync();
+			shopinfo = $("#shopinfo").val();
+			$.post('{AJAX}',{m:"editshopinfo",shopinfo:shopinfo}, function(e) {
 				alert(e.msg);
 				if(e.code=="1"){
 					location.reload();
@@ -77,6 +158,13 @@
 					}
 				},'json');
 			}
+		});
+	</script>
+	<script src="{PROOT}js/editor/kindeditor.js"></script>
+	<script src="{PROOT}js/editor/lang/zh_CN.js"></script>
+	<script>
+		KindEditor.ready(function(K) {
+		        window.editor = K.create('#shopinfo');
 		});
 	</script>
 </html>

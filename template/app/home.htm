@@ -71,7 +71,8 @@
 		      积分记录
 		    </p>
 		  </a>
-		  <a href="{AROOT}&a=pointmall" class="weui-grid js_grid">
+		  <!-- <a href="{AROOT}&a=pointmall" class="weui-grid js_grid" onclick="pointmall()"> -->
+		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="pointmall()">
 		    <div class="weui-grid__icon">
 		      <img src="{PROOT}images/icon.jpg" alt="">
 		    </div>
@@ -93,6 +94,9 @@
 		function chongzhi(){
 			$.alert("暂不支持在线充值，敬请期待");
 		}
+		function pointmall(){
+			$.alert("一大波礼品正在赶来，敬请期待！");
+		}
 		function fukuancode(uid){
 			$.post('{AJAX}&m=fukuancode',{uid:uid}, function(data, textStatus, xhr) {
 			    if(data.code=="1"){
@@ -105,7 +109,7 @@
 		function chargecode(uid){
 			$.post('{AJAX}&m=chargecode',{uid:uid}, function(data, textStatus, xhr) {
 			    if(data.code=="1"){
-			    	$.alert('<img src="http://pan.baidu.com/share/qrcode?w=150&h=150&url='+data.msg+'" alt="" />','我的充值码');
+			    	$.alert('暂不支持在线充值，敬请期待<br><img src="http://pan.baidu.com/share/qrcode?w=150&h=150&url='+data.msg+'" alt="" />','我的充值码');
 			    }else{
 			    	$.alert(data.msg);
 			    }
