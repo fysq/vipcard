@@ -1,5 +1,6 @@
 <?php 
 session_start();
+// aaa
 // $wx_log_type_want = "1" == "1"?"snsapi_userinfo":"snsapi_base";
 // $wx_res = $_SESSION['loveshang_wx_res'];
 // $wx_log_type_had = empty($wx_res['type'])?$wx_log_type_want:$wx_res['type'];
