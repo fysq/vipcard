@@ -5,6 +5,12 @@ $res = [];
 $res['code']="0";
 $res['msg']="error";
 
+$list = DB::fetch_all("SELECT * FROM m_vipcard_setting");
+$setting = array();
+foreach ($list as $k => $v) {
+	$setting[$v['skey']]=$v['val'];
+}
+
 switch ($m) {
 	case 'reg':
 		$ex = DB::fetch_first("SELECT COUNT(uid) AS num FROM m_vipcard_uinfo WHERE phone = '$phone'");
@@ -59,7 +65,6 @@ switch ($m) {
 		break;
 	case 'scancz':
 			DB::query("INSERT INTO m_vipcard_chargelist VALUES ('','admin_cz','$uid','$adminid','$cznum','0','$cztype','".time()."')");
-			// $balance = DB::fetch_first('')
 			DB::query("UPDATE m_vipcard_uinfo SET balance = balance + $cznum WHERE uid = '$uid'");
 			$res['code']="1";
 			$res['msg']="充值成功";
@@ -69,7 +74,7 @@ switch ($m) {
 			$balance = DB::fetch_first("SELECT balance FROM m_vipcard_uinfo WHERE uid = '$uid'");
 			if($balance['balance']>=$consumenum){
 				$balance = $balance['balance']-$consumenum;
-				$point = floor($consumenum/$pointbl);
+				$point = floor($consumenum/$setting['pointbl']);
 				DB::query("UPDATE m_vipcard_uinfo SET balance = balance - $consumenum,point_all = point_all+$point,point_left = point_left+$point WHERE uid = '$uid'");
 				DB::query("INSERT INTO m_vipcard_chargelist VALUES ('','admin_xf','$uid','$adminid','$consumenum','$point','余额消费','".time()."')");
 				$res['code']="1";
