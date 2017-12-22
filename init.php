@@ -1,5 +1,5 @@
 <?php 
-// qq
+
 if(!defined("IN_DISCUZ")){
 	exit("!");
 }
