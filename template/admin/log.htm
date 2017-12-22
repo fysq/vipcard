@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理后台</title>
+	{eval include template("vipcard:admin/common_header")}
+	<style type="text/css">
+		body{background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513791772285&di=545f5dafe8aba0836eadc6df6d990eca&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201211%2F29%2F20121129211122_uvyeM.jpeg');background-size: 100% 100%;}
+		.logform{position: fixed;top:50%;left:50%;;width:300px;margin-left: -150px;margin-top: -150px;background-color: rgba(0,0,0,.6);border-radius: 20px;box-sizing: border-box;padding: 30px;}
+		.title{font-size: 20px;color: white;}
+		.son input{width: 100%;margin: 5% 0%;line-height: 30px;border-style: none;text-indent: 1em;background-color: rgba(0,0,0,.3);color: white;border-radius: 5px;}
+	</style>
+</head>
+<body>
+	<form>
+		<div class="logform">
+			<div class="title tc">后台登陆</div>
+			<div class="son"><input type="text" name="username" class="username" placeholder="请输入用户名"></div>
+			<div class="son"><input type="password" name="password" class="password" placeholder="请输入密码"></div>
+			<div class="tc">
+				<input type="button" value="登录" class="weui-btn weui-btn_primary sub">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">
+		$(".sub").click(function(){
+			username = $(".username").val().trim();
+			password = $(".password").val().trim();
+			if(username == "" || password == ""){
+				$.toast("请输入用户名和密码","text");
+				return false;
+			}
+			$.post('{AJAX}&m=adminlog',{username:username,password:password}, function(e) {
+				if(e.code=="1"){
+					$.toast(e.msg);
+					location.href='{AROOT}:admin';
+				}else{
+					$.toast(e.msg,"text");
+				}
+			},'json');
+		});
+	</script>
+</body>
+</html>

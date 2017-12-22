@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{CARD_NAME}</title>
+	{eval include template("vipcard:app/common_header")}
+	<style type="text/css">
+		.c_card_box {
+		    margin: 15px;
+		    height: 200px;
+		    border-radius: 10px;
+		    box-shadow: 0 0 3px #999;
+		    color: #fff;
+		    background-size: 100% 100%;
+		    background-position: center center;
+		}
+		.funlist{
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div class="c_card_box" style="background-image: url(http://zhonghai.sydoil.com/attachment/images/92/2017/08/A887u5ld5Uiaaz8CDu8dn1pU4VL8LP.jpg);">
+			<img src="http://weixin.sydoil.com/attachment/images/92/2017/07/jC5Pv6Vg9LPdtLQ6g2X9YCXcxI5Y26.png" class="c_card_img1">
+			<div class="c_card_txt1" style="color:#ffffff">中海石化</div>
+			<div class="c_card_txt2" style="color:#d9d9d9"><span>默认会员组</span></div>
+			<div class="c_card_txt3" style="color:#ffffff">持卡人：{$uinfo['uname']}</div>
+			<div class="c_card_txt4" style="color:#ffffff">NO.{$uinfo['vipid']}</div>
+		</div>
+
+		<div class="c_card_box1">
+		    <p>我的财富</p>
+			<ul>
+				<li style="width:50%"><a href="./index.php?i=92&amp;c=activity&amp;a=coupon&amp;do=integral&amp;"><b>{$uinfo['point_left']}</b><br>我的积分</a></li>
+				<li style="width:50%"><a href="./index.php?i=92&amp;c=mc&amp;a=bond&amp;do=cardrecord&amp;"><b>{$uinfo['balance']}</b></a><br>会员卡余额</li>
+			</ul>
+		</div>
+
+
+		<div class="weui-grids funlist">
+		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="chongzhi()">
+		    <div class="weui-grid__icon">
+		      <img src="{PROOT}images/icon.jpg" alt="">
+		    </div>
+		    <p class="weui-grid__label">
+		      充值中心
+		    </p>
+		  </a>
+		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="fukuan()">
+		    <div class="weui-grid__icon">
+		      <img src="{PROOT}images/icon.jpg" alt="">
+		    </div>
+		    <p class="weui-grid__label">
+		      付款码
+		    </p>
+		  </a>
+		  <a href="{AROOT}&a=payrecord" class="weui-grid js_grid">
+		    <div class="weui-grid__icon">
+		      <img src="{PROOT}images/icon.jpg" alt="">
+		    </div>
+		    <p class="weui-grid__label">
+		      消费记录
+		    </p>
+		  </a>
+		  <a href="{AROOT}&a=pointrecord" class="weui-grid js_grid">
+		    <div class="weui-grid__icon">
+		      <img src="{PROOT}images/icon.jpg" alt="">
+		    </div>
+		    <p class="weui-grid__label">
+		      积分记录
+		    </p>
+		  </a>
+		  <a href="{AROOT}&a=pointmall" class="weui-grid js_grid">
+		    <div class="weui-grid__icon">
+		      <img src="{PROOT}images/icon.jpg" alt="">
+		    </div>
+		    <p class="weui-grid__label">
+		      积分兑换
+		    </p>
+		  </a>
+		  <a href="{AROOT}&a=shopinfo" class="weui-grid js_grid">
+		    <div class="weui-grid__icon">
+		      <img src="{PROOT}images/icon.jpg" alt="">
+		    </div>
+		    <p class="weui-grid__label">
+		      店铺信息
+		    </p>
+		  </a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function chongzhi(){
+			$.alert("暂不支持在线充值，敬请期待");
+		}
+	</script>
+</body>
+</html>

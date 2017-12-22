@@ -1,0 +1,116 @@
+<style>
+	.container {padding:0;}
+	ul,li {padding:0; margin:0; border:0;list-style:none;}
+	a {text-decoration: none;color: #333;}
+	a:hover,a:focus{text-decoration: none;color:#333;}
+	body{background:#efeff3; font-family: 'Microsoft YaHei',\5FAE\8F6F\96C5\9ED1, Arial, Helvetica, sans-serif;}
+	.panel{margin-bottom:0px; border:none;}
+	.panel.panel-default{color:#606366;}
+	.panel>.list-group:last-child .list-group-item:last-child{border-bottom:1px solid #dddddd;}
+	.panel.panel-default ul{background:-webkit-gradient(linear,0 0, 0 10%,from(rgba(90,197,212,1)), to(rgba(90,197,212,1))) center top; border-top:10px solid #e4e9e8; -webkit-background-size:100% 2px; padding-top:2px; background-repeat:no-repeat;}
+	.panel.panel-default:first-child ul{background:none; border-top:0; padding-top:0;}
+	.panel.panel-default ul .list-group-item{background-color:#e1ecee; height:48px; overflow:hidden;}
+	.panel.panel-default ul .list-group-item i{font-size:20px; display:inline-block; width:25px; margin-right:10px; color:#8dd1db; text-align:center; position:relative; top:3px;}
+	.panel.panel-default ul .list-group-item > .pull-right i{display:inline-block; font-size:22px; color:#888; position:absolute; right:0px; top:12px;}
+	.panel.panel-default ul .list-group-item > .pull-right .btn{background:#56c6d6; color:#FFF; border:0; border-radius:1px; margin-top:-5px; width:100px; height:32px; font-size:17px; white-space:pre-line;}
+	.btn-group-top-box{padding:10px 0; border-bottom:1px solid #a5d7de;}
+	.btn-group-top{margin:0 auto; overflow:hidden; width:200px; display:block;text-align:center;}
+	.btn-group-top .btn{width:100px; -webkit-box-shadow:none; box-shadow:none; border-color:#5ac5d4; color:#5ac5d4; background:#d1e5e9;}
+	.btn-group-top .btn:hover{color:#FFF; background:#addbe1;}
+	.btn-group-top .btn.active{color:#FFF; background:#5ac5d4;}
+	.btn.use{background:#56c6d6; color:#FFF; border:0; border-radius:4px;}
+	.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {color: #5ac5d4; background-color: #eee; border-color: #a5d7de;}
+	.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{background-color:#5ac5d4; border-color:#5ac5d4;}
+	.pagination>li>a, .pagination>li>span{color:#5ac5d4; border:1px solid #a5d7de;}
+	/*消费记录*/
+	.consume .record-head{width:100%; height:100px; border-bottom:1px solid #a5d7de;margin-bottom:1px;}
+	.consume .record-head ul{margin:0 auto; list-style:none; padding:0px; }
+	.consume .record-head li{height:50px; line-height:50px; background-color:#ffffff;}
+	.consume .record-head .date{padding:0px 5px; text-align:center; }
+	.consume .record-head .money{width:46%; float:left; color:#999; height:50px; padding:0 4%; line-height:50px;}
+	.consume .record-head .income{margin-right:20px;}
+	.consume .record-head .money span{color:#333;}
+	.consume .record-box{background:transparent url('resource/images/home-bg.jpg') no-repeat; background-size:100% 100%;}
+	.consume .list-item{height:70px; padding:10px 5px; border-bottom:1px solid #dddddd;}
+	.consume .list-item>div{float:left;}
+	.consume .record-box .member-detail{width:15%; text-align:center; overflow:hidden;}
+	.consume .record-box .member-detail .img-rounded{width:30px; height:30px; line-height:30px; overflow:hidden; margin:0 auto; text-align:center;}
+	.consume .record-box .member-detail .img-rounded i{font-size:20px; margin-top:4px; display:inline-block; color:#FFF;}
+	.consume .record-box .member-detail .img-rounded img{width:30px; height:30px;}
+	.consume .record-box .member-detail span{display:block; width:100%; text-align:center; overflow:hidden; text-overflow:ellipsis;  white-space:nowrap; font-size:12px; color:#999; margin-top:3px;}
+	.consume .record-box .record-detail{width:60%;}
+	.consume .record-box .record-detail > div{margin-top:4px; border-left:1px #DDD solid; padding-left:10px;}
+	.consume .record-box .record-detail > div span{display:block;}
+	.consume .record-box .record-detail > div .name{font-size:15px; width:160px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+	.consume .record-box .record-detail > div .date{font-size:13px; margin-top:5px; color:#999;}
+	.consume .record-box .pay-detail{width:23%; text-align:right; margin-right:2%;}
+	.consume .record-box .pay-detail > div{margin-top:4px;}
+	.consume .record-box .pay-detail > div span{display:block; text-align:right;}
+	.consume .record-box .pay-detail > div .money{font-size:15px; font-weight:bold;}
+	.consume .record-box .pay-detail > div .state{font-size:13px; margin-top:5px; color:#999;}
+	.consume .list-group-item{background-color:#e1ecee;}
+	/*收货地址*/
+	.address,.address-edit{padding:10px 15px; background:transparent url('resource/images/home-bg.jpg') no-repeat; background-size:100% 100%;}
+	.address > a{text-decoration:none; border-bottom:1px #DDD solid; padding:8px 0; display:block; color:#333;}
+	.address > a:last-child{border-bottom:0; color:#428bca;}
+	.address div{padding:0; margin:0;}
+	.address .info b{margin-right:15px;}
+	.address .address-details{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:12px; margin-top:5px;}
+	@media screen and (max-width: 767px) {.tpl-calendar div,.tpl-district-container div{margin-bottom:10px;}}
+	.c_fl {float:left;}
+	.c_fr {float:right;}
+	.c_head_bg {height:44px; line-height:44px; background:#418ce2; padding:0px 15px 0px 15px; font-size:16px; color:#fff;}
+	.c_head_bg a {color:#fff; text-decoration:none;}
+	.c_head_bg .c_back {width:20%;}
+	.c_head_bg .c_back a {padding-left:15px; padding-top:1px; background-repeat: no-repeat; background-size:10px 16px; background-image: url(resource/img/cloudoil_back.png); background-position:left center;}
+	.c_head_bg .c_tit {width:60%; text-align:center; font-size:18px; font-weight:bold;}
+	.c_head_bg .c_right {width:20%; text-align:right;}
+	.c_foot {text-align:center; padding:10px 0;color:#999;font-size:10px; margin:0 auto;}
+	.c_foot li{line-height:16px; height:16px;}
+	.c_foot ul{list-style:none; padding:0; margin:0;}
+	.c_card_box {margin:15px; height:200px; border-radius:10px;box-shadow:0 0 3px #999;color:#fff;background-size:100% 100%; background-position:center center;}
+	.c_card_boxbg {margin:15px; height:200px; background:#0172d2; border-radius:10px;box-shadow:0 0 3px #999;color:#fff;
+FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#259af7,endColorStr=#0172d2); /*IE 6 7 8*/ 
+background: -ms-linear-gradient(top, #259af7,  #0172d2);        /* IE 10 */
+background:-moz-linear-gradient(top,#259af7,#0172d2);/*火狐*/ 
+background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#259af7), to(#0172d2));/*谷歌*/ 
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#259af7), to(#0172d2));      /* Safari 4-5, Chrome 1-9*/
+background: -webkit-linear-gradient(top, #259af7, #0172d2);   /*Safari5.1 Chrome 10+*/
+background: -o-linear-gradient(top, #259af7, #0172d2);  /*Opera 11.10+*/
+	}
+	.c_card_box .c_card_img1 {position: absolute; left:35px;top:35px; width:66px; height:66px; border-radius:66px;}
+	.c_card_box .c_card_img2 {position:absolute;right:35px;top:92px; width:38px; height:38px;}
+	.c_card_box .c_card_txt1 {position:absolute;left:120px;top:39px; font-size:20px; font-weight:bold;}
+	.c_card_box .c_card_txt2 {position:absolute;left:120px;top:70px;}
+	.c_card_box .c_card_txt2 span {border-radius:3px; padding:1px 8px;background: rgba(0,0,0,0.5);}
+	.c_card_box .c_card_txt3 {position:absolute;left:120px; top:100px;font-size:16px;}
+	.c_card_box .c_card_txt4 {position:absolute;left:35px; top:178px; color:#fed26d;font-size:20px;letter-spacing:1px;}
+	.c_card_box1 {background:#fff; padding-bottom:12px; border-top:1px solid #d9d9d9; border-bottom:1px solid #d9d9d9;overflow:hidden; margin-bottom:10px;}
+	.c_card_box1 li {width:33.3%; text-align:center; float:left;}
+	.c_card_box1 li b{color:#259af7;}
+	.c_card_box1 p{border-bottom:1px solid #d9d9d9; padding:10px 15px 10px 41px; font-weight:bold; background-repeat: no-repeat; background-size:20px 20px; background-image: url(resource/img/cloudoil_17.png); background-position:left 15px center;}
+	.c_card_box1 .c_btn {border:1px solid #ff8a00;border-radius:3px; color:#ff8a00; padding:1px 3px;}
+	.c_card_box2 {background:#fff;overflow:hidden; border-top:1px solid #d9d9d9;}
+	.c_card_box2 li {width:33.3%; text-align:center; padding:15px 0px 12px 0px; border-bottom:1px solid #d9d9d9; border-right:1px solid #d9d9d9; float:left;}
+	.c_card_box2 li:last-child{border-right:none;}
+	.c_card_box2 li img{width:25%; margin-bottom:5px;}
+	/*luck*/
+.luck { position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 19891014; font-size: 14px;}
+.luck-shade { background: #000; opacity: 0.5; position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 0; }
+.luck-table { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: table; pointer-events: none; z-index: 1; }
+.luck-table-cell { height: 100%; display: table-cell; vertical-align: middle; text-align: center; position: relative; z-index: 101; }
+.luck-child { background: #fff; display: inline-block; max-width: 260px; min-width: 150px; border-radius: 5px; overflow: hidden; line-height: 22px; pointer-events: auto; animation: bouncedelay ease .3s; -webkit-animation: bouncedelay ease .3s; box-shadow: 0 0 50px #666; text-align: left; }
+@-webkit-keyframes bouncedelay { 0% {-webkit-transform:scale(0)}
+ 100% {-webkit-transform:scale(1)}}
+@keyframes bouncedelay {
+0% {transform:scale(0);-webkit-transform:scale(0)}
+ 100% {transform:scale(1);-webkit-transform:scale(1)}}
+.luck-title { height: 40px; line-height: 40px; background: #fff; font-weight: normal; padding-left: 10px; border-bottom: solid 1px #ddd; position: relative; }
+.luck-title button { width: 40px; height: 40px; background: none; border: 0; font-size: 18px; position: absolute; right: 0; top: 0; }
+.luck-con { padding: 20px 15px;}
+.luck-btn-box { width: 100%; height: 40px; border-top: solid 1px #ddd; line-height: 40px; text-align: center; display: box; display: -webkit-box; display: -moz-box; orient: horizontal; }
+.luck-btn-box span { display:block;box-flex: 1; -webkit-box-flex: 1; -moz-box-flex: 1; cursor:pointer;}
+.luck-btn-box .no { border-left: solid 1px #eee; }
+.loading { background: url(http://img.loveqiao.com/loading.gif) no-repeat center center #fff; width: 50px; height: 50px; }
+.button-small {font-size: 12px;height: 30px;line-height: 30px;padding: 0 30px;border-radius:4px;background-color: #1B9AF7; border:0;color:#FFF;}
+</style>

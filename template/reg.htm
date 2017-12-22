@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>欢迎使用{CARD_NAME}</title>
+	{eval include template("vipcard:common_header")}
+	<style>
+		#form{width: 80%;margin: 0 10%;}
+	</style>
+</head>
+<body>
+	<div class="title tc">欢迎体验{CARD_NAME}，首次使用需要激活。</div>
+	<div class="tc">
+		<p><img src="{$wx_res['headimgurl']}" alt="" style="border-radius: 50%;width: 30%;"></p>
+		<p>{$wx_res['nickname']}</p>
+	</div>
+	<div>
+		<form id="form">
+			<input type="hidden" name="wxid" value="{$wx_res['openid']}">
+			<div><span class="fl">姓名</span></div><input type="text" name="uname" class="uname">
+			<div><span class="fl">性别</span></div><input type="radio" name="sex" value="男" {if $wx_res['sex']=="1"}checked{/if}>男<input type="radio" name="sex" value="女" {if $wx_res['sex']!="1"}checked{/if}>女
+			<div><span class="fl">生日</span></div><input type="date" name="birthday" class="birthday">
+			<!-- <div><span class="fl">生日</span></div><input type="text" data-toggle='date' name="birthday" class="birthday"> -->
+			<div><span class="fl">手机</span></div><input type="text" name="phone" class="phone">
+			<input type="button" value="立刻激活" class="sub weui-btn weui-btn_primary">
+		</form>
+	</div>
+	<script>
+		$(".sub").click(function(event) {
+			uname = $(".uname").val().trim();
+			if(!uname){
+				$.toast("请填写您的姓名。","text");
+				$(".uname").focus();
+				return false;
+			}
+			birthday = $(".birthday").val().trim();
+			if(!birthday){
+				$.toast("请填写您的生日。","text");
+				$(".birthday").focus();
+				return false;
+			}
+			phone = $(".phone").val().trim();
+			if(!checkphone(phone)){
+				$.toast("请核对手机号是否正确。","text");
+				$(".phone").focus();
+				return false;
+			}
+			data = $("#form").serialize();
+			$.post('{AJAX}&m=reg', data, function(e) {
+				
+			});
+		});
+	</script>
+</body>
+</html>
