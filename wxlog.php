@@ -17,7 +17,7 @@ if(empty($wx_res) || $wx_log_type_now != SCOPE){
      if(!$code){
          $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".APPID."&redirect_uri=";
          $url.= $url_this1;
-         $url.="&response_type=code&scope=".SCOPE."&state=#wechat_redirect";
+         $url.="&response_type=code&scope=".SCOPE."&state=".$url_this1."#wechat_redirect";
          echo "<script language='javascript'>";
          echo "location.href='".$url."'";
          echo "</script>";
@@ -35,7 +35,7 @@ if(empty($wx_res) || $wx_log_type_now != SCOPE){
 
     $res['type'] = SCOPE;
     $_SESSION['loveshang_wx_res'] = $res;
-    header("Location:".$url);
+    header("Location:".$state);
 }
 
 // $wx_res = Array(
