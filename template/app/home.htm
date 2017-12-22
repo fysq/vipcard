@@ -39,7 +39,7 @@
 
 
 		<div class="weui-grids funlist">
-		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="chongzhi()">
+		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="chargecode('{$uid}')">
 		    <div class="weui-grid__icon">
 		      <img src="{PROOT}images/icon.jpg" alt="">
 		    </div>
@@ -47,7 +47,7 @@
 		      充值中心
 		    </p>
 		  </a>
-		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="fukuan()">
+		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="fukuancode('{$uid}')">
 		    <div class="weui-grid__icon">
 		      <img src="{PROOT}images/icon.jpg" alt="">
 		    </div>
@@ -92,6 +92,24 @@
 	<script type="text/javascript">
 		function chongzhi(){
 			$.alert("暂不支持在线充值，敬请期待");
+		}
+		function fukuancode(uid){
+			$.post('{AJAX}&m=fukuancode',{uid:uid}, function(data, textStatus, xhr) {
+			    if(data.code=="1"){
+			    	$.alert('<img src="http://pan.baidu.com/share/qrcode?w=150&h=150&url='+data.msg+'" alt="" />','我的付款码');
+			    }else{
+			    	$.alert(data.msg);
+			    }
+			},'json');
+		}
+		function chargecode(uid){
+			$.post('{AJAX}&m=chargecode',{uid:uid}, function(data, textStatus, xhr) {
+			    if(data.code=="1"){
+			    	$.alert('<img src="http://pan.baidu.com/share/qrcode?w=150&h=150&url='+data.msg+'" alt="" />','我的充值码');
+			    }else{
+			    	$.alert(data.msg);
+			    }
+			},'json');
 		}
 	</script>
 </body>

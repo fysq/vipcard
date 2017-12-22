@@ -79,6 +79,16 @@ switch ($m) {
 			}
 			echo json_encode($res);
 		break;
+	case 'fukuancode':
+			$res['code']="1";
+			$res['msg']=urlencode(dirname($_SERVER['HTTP_REFERER'])."/plugin.php?id=vipcard&a=consume&uid=".$uid);
+			echo json_encode($res);
+		break;
+	case 'chargecode':
+			$res['code']="1";
+			$res['msg']=urlencode(dirname($_SERVER['HTTP_REFERER'])."/plugin.php?id=vipcard&a=recharge&uid=".$uid);
+			echo json_encode($res);
+		break;
 	default:
 		echo json_encode($_POST);
 		break;
