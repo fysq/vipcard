@@ -3,7 +3,8 @@ session_start();
 
 define("APPID","wxc2b4906541e812c6");
 define("SECRET","b702f0cd52f11f13668e52450969a6ac");
-define("SCOPE","snsapi_base");
+// define("SCOPE","snsapi_base");
+define("SCOPE","snsapi_userinfo");
 
 $wx_res = $_SESSION['loveshang_wx_res'];
 $wx_log_type_now = empty($wx_res['type'])?SCOPE:$wx_res['type'];
