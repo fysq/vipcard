@@ -77,8 +77,8 @@
 				<td>升级消耗积分</td>
 				<td>优惠折扣</td>
 			</tr>
-			{eval $viplist = array_filter(explode("|",$setting['viplist']))}
-			{loop $}
+			{eval $viplist = json_decode($setting['viplist'],true)}
+			{loop $viplist $k $v}
 			<tr>
 				<td>1</td>
 				<td><input type="text" name="vipname[]" value="默认会员组"></td>
