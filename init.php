@@ -2,7 +2,7 @@
 if(!defined("IN_DISCUZ")){
 	exit("!");
 }
-
+session_start();
 foreach ($_GET as $key => $value) {
 	$$key = $value;
 }

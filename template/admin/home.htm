@@ -5,7 +5,12 @@
 	<title>管理后台</title>
 	{eval include template("vipcard:admin/common_header")}
 </head>
-<body>
-
-</body>
+	<frameset rows="60,*" frameborder="no" border="0" framespacing="0">
+	    <frame src="{AROOT}:admin&a=top" name="topFrame" id="topFrame" scrolling="no" frameborder="NO" border="0"
+	           framespacing="0">
+	    <frameset cols="200,*" name="bodyFrame" id="bodyFrame" frameborder="no" border="0" framespacing="0">
+	        <frame src="{AROOT}:admin&a=left" name="leftFrame" frameborder="no" scrolling="no" noresize id="leftFrame">
+	        <frame src="{AROOT}:admin&a=main" name="mainFrame" frameborder="no" scrolling="auto" noresize id="mainFrame">
+	    </frameset>
+	</frameset>
 </html>

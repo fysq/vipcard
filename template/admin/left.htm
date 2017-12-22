@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理后台</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		html{background-color: #2F4050;}
+		.frame_left{margin-top:0px;}
+		.frame_left .tops{height:30px;width:200px;background-image:url(../images/admin_left_topbg.png);background-repeat:no-repeat;background-position:center center;}
+		.frame_left a{display:block;position:relative;text-decoration:none;height:36px;padding-top:14px;color:#A7B1C2;background-image:url(../images/admin_left_li.png);background-repeat:no-repeat;background-position:168px 20px;padding-left:75px;width:135px;margin-bottom:1px;}
+		.frame_left a:hover{background-color:#23303C;color:#FFFFFF;background-position:172px 20px;padding-left:75px;background-position:168px 20px;}
+		.frame_left a.select{background-color:#23303C;color:#FFFFFF;border-left:5px #4196E1 solid;padding-left:70px;background-position:163px 20px;}
+		.frame_left a .count{position:absolute;left:135px;top:15px;width:7px;height:7px;border-radius:100%;font-size:0px;background-color:#FF0000;}
+		.frame_left a.select .count{left:130px;}
+		.frame_left .linkimg{position:absolute;right:150px;top:17px;width:16px;height:16px;}
+		.frame_left .linkimg img{width:16px;height:16px;}
+	</style>
+</head>
+	<div class="frame_left">
+	    <div class="tops"></div>
+	    <a href="{AROOT}:admin&a=panel" target="mainFrame" class="li select">
+            首页
+            <div class="linkimg"><img src="{PROOT}images/icon/home.png" border="0"></div>
+        </a>
+	    <a href="{AROOT}:admin&a=user" target="mainFrame" class="li">
+            用户
+            <div class="linkimg"><img src="{PROOT}images/icon/17.png" border="0"></div>
+        </a>
+	    <a href="{AROOT}:admin&a=recharge" target="mainFrame" class="li">
+            充值
+            <div class="linkimg"><img src="{PROOT}images/icon/120.png" border="0"></div>
+        </a>
+	    <a href="{AROOT}:admin&a=point" target="mainFrame" class="li">
+            积分
+            <div class="linkimg"><img src="{PROOT}images/icon/761.png" border="0"></div>
+        </a>
+	    <a href="{AROOT}:admin&a=setting" target="mainFrame" class="li">
+            设置
+            <div class="linkimg"><img src="{PROOT}images/icon/1008.png" border="0"></div>
+        </a>
+        <a href="{AROOT}:admin&a=logout" target="_top" class="li">
+            退出
+            <div class="linkimg"><img src="{PROOT}images/icon/exit.png" border="0"></div>
+        </a>
+    </div>
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$(".li").click(function(){
+    		$(".li").removeClass('select');
+    		$(this).addClass('select');
+    	})
+    </script>
+</html>

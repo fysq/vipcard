@@ -11,4 +11,79 @@ table {border-collapse:collapse;border-spacing:0;}
 
 .tc{text-align: center;}
 .fl{float: left;}
+.w100{width: 100%;display: inline-block;}
+.clear{clear: both;}
 
+/*table*/
+.table_{
+	width:90%;
+	margin:15px 5%;
+	border:0;
+}
+.table_ th {
+	font-weight:bold;
+	background-color:#d8f1fe;
+	color:#20a0fe
+}
+.table_,.table_ th,.table_ td {
+	font-size:0.95em;
+	text-align:center;
+	padding:4px;
+	border-collapse:collapse;
+	word-break: keep-all;
+}
+.table_ th {
+	border: 1px solid #d8f1fe;
+	border-width:1px
+}
+.table_ td {
+	border: 1px solid #d8f1fe;
+	border-width:1px
+}
+.table_ tr {
+	border: 1px solid #ffffff;
+}
+.table_ tr:nth-child(odd){
+	background-color:#f7f7f7;
+}
+.table_ tr:nth-child(even){
+	background-color:#ffffff;
+}
+
+
+.btn1{background-color: #4196E1!important;font-size: 12px;padding: 2px 6px;border-radius: 2px;color: #FFFFFF;text-decoration: none;margin-right: 10px;display: inline-block;cursor: pointer;}
+.btn2{background-color: #8bc34a!important;font-size: 12px;padding: 2px 6px;border-radius: 2px;color: #FFFFFF;text-decoration: none;margin-right: 10px;display: inline-block;cursor: pointer;}
+.btn3{background-color: #795548!important;font-size: 12px;padding: 2px 6px;border-radius: 2px;color: #FFFFFF;text-decoration: none;margin-right: 10px;display: inline-block;cursor: pointer;}
+
+.toptit{line-height:180%;padding-left:20px;margin-left:20px;margin-right:20px;border-bottom:1px #DFDFDF solid;border-top:1px #DFDFDF solid;background-color:#F5F7F8;height:50px;line-height:50px;margin-bottom:20px;color:#666666;}
+
+.fml{width: 150px;padding-right: 20px;text-align: right;float: left;padding-top: 12px;}
+.fmr{width: 500px;float: left;margin-bottom: 20px;}
+
+/*-----表单--------*/
+.input_text_default{width:90%;height:40px;line-height:40px;border:1px #DFDFDF solid;padding-left:10px;border-radius:4px;}
+.input_text_default:hover{border:1px #33BEF2 solid;-moz-box-shadow:0px 0px 10px #33BEF2; /*firefox*/-webkit-box-shadow:0px 0px 10px #33BEF2; /*safari»òchrome*/box-shadow:0px 0px 10px #33BEF2; /*opera»òie9*/}
+.input_text_default.middle{line-height:20px;width:400px;}
+.input_text_default.small{line-height:20px;width:200px;}
+.input_text_default.h100{height:100px;line-height:130%;}
+.input_text_default.arrow{cursor:pointer;background-image:url(../images/arrow.png);background-repeat:no-repeat;background-position:660px center;}
+.input_text_default.middle.arrow{background-position:390px center;}
+
+/*-----按钮--------*/
+.admin_submit{border:0px;font-size:14px;margin-right:10px;margin-bottom:4px;border:1px #236FED solid;background-color:#4587F0;color:#FFFFFF;border-radius:4px;display:inline;padding:0px 15px;cursor:pointer;line-height:255%}
+.admin_submit:hover{border:1px #115ACE solid;background-color:#1669EC}
+.admin_submit.small{font-size:12px;padding:4px 9px;line-height:100%}
+.admin_submit.big{font-size:16px;padding:0px 32px;}
+.admin_submit.gray{border:1px #DFDFDF solid;background-color:#EFEFEF;color:#666666}
+.admin_submit:hover.gray{background-color:#FFFFFF;color:#333333}
+.admin_submit[disabled]{background-color:#EFEFEF;border:1px #CCCCCC solid;color:#999999}
+
+.form_main .fmr.txt{padding-top:11px;line-height:160%;}
+
+.demos-title {
+  text-align: center;
+  font-size: 34px;
+  color: #3cc51f;
+  font-weight: 400;
+  margin: 0 15%;
+}

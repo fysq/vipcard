@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理后台</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+
+		.adminson{margin: 0px 10px 5px;float: left;background-color: #d2d1d1;padding: 3px;border-radius: 3px;}
+		.adminson .deladmin{float: right;}
+	</style>
+	<link rel="stylesheet" type="text/css" href="{PROOT}css/common.css">
+</head>
+	<div class="toptit">账号密码设置</div>
+	<form id="st1" class="form_main">
+		<div class="w100">
+			<div class="fml">登录账号：</div>
+			<div class="fmr"><input name="adminname" type="text"  class="input_text_default" value="{$setting['adminname']}"></div>
+		</div>
+		<div class="w100">
+			<div class="fml">登录密码：</div>
+			<div class="fmr"><input name="adminpassword" type="text"  class="input_text_default" placeholder="留空不变"></div>
+		</div>
+		<div>
+			<div class="fml"></div>
+			<div class="fmr"><input type="button" class="admin_submit sub1" value="提交"></div>
+		</div>
+	</form>
+	<div class="clear"></div>
+	<div class="toptit">消费充值管理员设置</div>
+	{eval $adminlist = array_filter(explode("|",$setting['adminlist']))}
+	<form id="st2" class="form_main">
+		<div class="w100">
+			<div class="fml">管理员列表：</div>
+			<div class="fmr txt">
+				{if !empty($adminlist)}
+					{loop $adminlist $k $v}
+					<div class="adminson">{$v}<div class="deladmin" data-p="{$v}">&nbsp;&nbsp;&nbsp;<img src="{PROOT}images/icon/1028.png" alt=""></div></div>
+					{/loop}
+				{else}
+				暂无
+				{/if}
+			</div>
+		</div>
+		<div class="w100">
+			<div class="fml">新增管理员：</div>
+			<div class="fmr"><input name="adminphone" type="text"  class="input_text_default addphone" placeholder="请输入新增管理员手机号"></div>
+		</div>
+		<div>
+			<div class="fml"></div>
+			<div class="fmr"><input type="button" class="admin_submit sub2" value="提交"></div>
+		</div>
+	</form>
+	<div class="clear"></div>
+	
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+		// 新增管理员
+		$(".sub2").click(function(){
+			addphone = $("#st2").find(".addphone").val().trim();
+			$.post('{AJAX}',{m:"addadminphone",addphone:addphone}, function(e) {
+				alert(e.msg);
+				if(e.code=="1"){
+					location.reload();
+				}
+			},'json');
+		});
+
+		$(".deladmin").click(function(){
+			if(confirm("确认删除？")){
+				delphone = $(this).attr("data-p");
+				$.post('{AJAX}',{m:"deladminphone",delphone:delphone}, function(e) {
+					alert(e.msg);
+					if(e.code=="1"){
+						location.reload();
+					}
+				},'json');
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台核验</title>
+	{eval include template("vipcard:app/common_header")}
+	<style>
+		#form{width: 80%;margin: 0 10%;}
+	</style>
+</head>
+<body>
+	{if !empty($uinfo) && $isadmin['num']=="1"}
+		{if $acttype=="recharge"}
+		<h1 class="demos-title">余额充值</h1>
+		<div class="weui-cells__title">用户信息</div>
+		<div class="weui-cells">
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>姓名</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['uname']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>手机</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['phone']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>性别</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['sex']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>生日</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['birthday']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>积分</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['point_left']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>余额</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['balance']}</div>
+		  </div>
+		</div>
+
+		<input type="hidden" class="uid" value="{$uid}">
+		<input type="hidden" class="adminid" value="{$admininfo['uid']}">
+		<div class="weui-cells__title">充值信息</div>
+		<div class="weui-cells weui-cells_form">
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><label class="weui-label">充值金额</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input cznum" type="number" placeholder="请输入充值金额">
+		    </div>
+		  </div>
+		  <div class="weui-cell weui-cell_select" style="padding: 0 15px;">
+		    <div class="weui-cell__hd"><label class="weui-label">充值方式</label></div>
+	      	  <div class="weui-cell__bd">
+	      	    <select class="weui-select cztype">
+	      	      <option value="现金充值" selected="" >现金充值</option>
+	      	      <option value="微信支付">微信支付</option>
+	      	      <option value="支付宝">支付宝</option>
+	      	      <option value="其他">其他</option>
+	      	    </select>
+	      	  </div>
+	      	</div>
+		</div>
+		<div class="weui-btn-area">
+	      <a class="weui-btn weui-btn_primary" href="javascript:" id="czsub">确定</a>
+	    </div>
+	    <script></script>
+	    <script>
+	    	$("#czsub").click(function(){
+	    		uid = $(".uid").val().trim();
+	    		adminid = $(".adminid").val().trim();
+	    		cznum = $(".cznum").val().trim();
+	    		cztype = $(".cztype").val().trim();
+	    		if(cznum=="" || cznum=="0"){
+    				$.toast("请输入充值金额","text");
+    				return false;
+	    		}
+	    		$.confirm({
+	    		  title: '操作提示',
+	    		  text: '请确认充值金额：'+cznum+'',
+	    		  onOK: function () {
+	  		    		$.post('{AJAX}&m=scancz', {uid:uid,adminid:adminid,cznum:cznum,cztype:cztype}, function(e) {
+	  		    			if(e.code=="1"){
+	  		    				$.toast(e.msg);
+	  		    				location.reload();
+	  		    			}else{
+	  		    				$.toast(e.msg,"text");
+	  		    			}
+	  		    		},'json');
+	    		  },
+	    		  onCancel: function () {
+	    		  }
+	    		});
+	    	});
+	    </script>
+		{elseif $acttype=="consume"}
+		<h1 class="demos-title">余额消费</h1>
+		<div class="weui-cells__title">用户信息</div>
+		<div class="weui-cells">
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>姓名</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['uname']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>手机</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['phone']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>性别</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['sex']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>生日</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['birthday']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>积分</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['point_left']}</div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>余额</p>
+		    </div>
+		    <div class="weui-cell__ft">{$uinfo['balance']}</div>
+		  </div>
+		</div>
+
+		<input type="hidden" class="uid" value="{$uid}">
+		<input type="hidden" class="adminid" value="{$admininfo['uid']}">
+		<div class="weui-cells__title">消费信息</div>
+		<div class="weui-cells weui-cells_form">
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><label class="weui-label">优惠金额</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input xfnum xfnum1" type="number" placeholder="请输入优惠金额">
+		    </div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><label class="weui-label">优惠折扣</label></div>
+		    <div class="weui-cell__bd">
+		      <div class="zk">0.88</div>
+		    </div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><label class="weui-label">不优惠金额</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input xfnum xfnum2" type="number" placeholder="请输入不优惠金额">
+		    </div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><label class="weui-label">折后消费</label></div>
+		    <div class="weui-cell__bd">
+		      <div class="consumenum">0.00</div>
+		    </div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><label class="weui-label">可获得积分</label></div>
+		    <div class="weui-cell__bd">
+		    	<input type="hidden" class="pointbl" value="10">
+		      <div class="pointget">0</div>
+		    </div>
+		  </div>
+		</div>
+		<div class="weui-btn-area">
+	      <a class="weui-btn weui-btn_primary" href="javascript:" id="xfsub">确认消费</a>
+	    </div>
+	    <script></script>
+	    <script>
+	    	// $(".xfnum").propertychange(function(){
+    		$(".xfnum").bind('input porpertychange',function(){
+	    		num1 = $(".xfnum1").val().trim();
+	    		num2 = $(".xfnum2").val().trim();
+	    		zk = $(".zk").text();
+	    		consumenum = Number(Number(num1*zk)+Number(num2)).toFixed(2);
+	    		$(".consumenum").text(consumenum);
+	    		pointbl = Number($(".pointbl").val().trim());
+	    		pointget = Math.floor(consumenum/pointbl).toFixed(0);
+	    		$(".pointget").text(pointget);
+	    	});
+	    	$("#xfsub").click(function(){
+	    		uid = $(".uid").val().trim();
+	    		adminid = $(".adminid").val().trim();
+	    		consumenum = $(".consumenum").text();
+	    		if(consumenum=="" || consumenum=="0"){
+    				$.toast("请输入消费金额","text");
+    				return false;
+	    		}
+	    		$.confirm({
+	    		  title: '操作提示',
+	    		  text: '请确认消费金额：'+consumenum+'',
+	    		  onOK: function () {
+	  		    		$.post('{AJAX}&m=scanxf', {uid:uid,adminid:adminid,consumenum:consumenum,pointbl:pointbl}, function(e) {
+	  		    			if(e.code=="1"){
+	  		    				$.toast(e.msg);
+	  		    				location.reload();
+	  		    			}else{
+	  		    				$.toast(e.msg,"text");
+	  		    			}
+	  		    		},'json');
+	    		  },
+	    		  onCancel: function () {
+	    		  }
+	    		});
+	    	});
+	    </script>
+		{/if}
+	{else}
+	<div class="weui-msg">
+	  <div class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></div>
+	  <div class="weui-msg__text-area">
+	    <h2 class="weui-msg__title">操作失败</h2>
+	    <p class="weui-msg__desc">
+			{if empty($uinfo)}
+				二维码无效
+			{elseif $isadmin['num']!="1"}
+				无权操作
+			{else}
+
+			{/if}
+	    </p>
+	  </div>
+	</div>
+	{/if}
+</body>
+</html>
