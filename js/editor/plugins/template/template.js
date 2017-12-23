@@ -56,4 +56,3 @@ KindEditor.plugin('template', function(K) {
 		});
 	});
 });
-

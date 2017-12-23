@@ -5,11 +5,6 @@ $res = [];
 $res['code']="0";
 $res['msg']="error";
 
-$list = DB::fetch_all("SELECT * FROM m_vipcard_setting");
-$setting = array();
-foreach ($list as $k => $v) {
-	$setting[$v['skey']]=$v['val'];
-}
 
 switch ($m) {
 	case 'reg':
@@ -64,7 +59,8 @@ switch ($m) {
 		
 		break;
 	case 'scancz':
-			DB::query("INSERT INTO m_vipcard_chargelist VALUES ('','admin_cz','$uid','$adminid','$cznum','0','$cztype','".time()."')");
+			$lscode = "C".date('ymdHis').mt_rand('1000','9999');
+			DB::query("INSERT INTO m_vipcard_chargelist VALUES ('','admin_cz','$uid','$adminid','$cznum','0','$cztype','".time()."','$lscode')");
 			DB::query("UPDATE m_vipcard_uinfo SET balance = balance + $cznum WHERE uid = '$uid'");
 			$res['code']="1";
 			$res['msg']="充值成功";
@@ -73,10 +69,11 @@ switch ($m) {
 	case 'scanxf':
 			$balance = DB::fetch_first("SELECT balance FROM m_vipcard_uinfo WHERE uid = '$uid'");
 			if($balance['balance']>=$consumenum){
+				$lscode = "P".date('ymdHis').mt_rand('1000','9999');
 				$balance = $balance['balance']-$consumenum;
 				$point = floor($consumenum/$setting['pointbl']);
 				DB::query("UPDATE m_vipcard_uinfo SET balance = balance - $consumenum,point_all = point_all+$point,point_left = point_left+$point WHERE uid = '$uid'");
-				DB::query("INSERT INTO m_vipcard_chargelist VALUES ('','admin_xf','$uid','$adminid','$consumenum','$point','余额消费','".time()."')");
+				DB::query("INSERT INTO m_vipcard_chargelist VALUES ('','admin_xf','$uid','$adminid','-$consumenum','$point','余额消费','".time()."','$lscode')");
 				$res['code']="1";
 				$res['msg']="余额消费成功";
 			}else{
@@ -103,9 +100,48 @@ switch ($m) {
 	case 'editbase':
 			DB::query("UPDATE m_vipcard_setting SET val = '$cardname' WHERE skey = 'cardname'");
 			DB::query("UPDATE m_vipcard_setting SET val = '$pointbl' WHERE skey = 'pointbl'");
+			DB::query("UPDATE m_vipcard_setting SET val = '$shopname' WHERE skey = 'shopname'");
+			DB::query("UPDATE m_vipcard_setting SET val = '$shopaddress' WHERE skey = 'shopaddress'");
+			DB::query("UPDATE m_vipcard_setting SET val = '$cardbg' WHERE skey = 'cardbg'");
+			DB::query("UPDATE m_vipcard_setting SET val = '$cardlogo' WHERE skey = 'cardlogo'");
 			$res['code']="1";
 			$res['msg']="编辑成功";
 			echo json_encode($res);
+		break;
+	case 'uploadimg':
+		$obj = array();
+		$id= $_POST["fid"];
+		$randname = date("YmdHis",time()).mt_rand(10,99);
+		$imgtype = substr(strrchr($_FILES[$id]['name'], '.'), 1);
+		// $upFilePath = "http://localhost/dz32u/".PROOT."attachment/".$randname.".".$imgtype;
+		$upFilePath = dirname(__FILE__)."/attachment/".$randname.".".$imgtype;
+		$ok=move_uploaded_file($_FILES[$id]['tmp_name'],$upFilePath);
+		 if($ok === FALSE){
+		  $obj['statue']='0';
+		  $obj['msg']=$_FILES;
+		 }else{
+		  $obj['statue']='1';
+		  $obj['url']='http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/".PROOT."attachment/".$randname.".".$imgtype;
+		 }
+		  echo json_encode($obj);
+		  exit;
+		break;
+	case 'editadmin':
+			DB::query("UPDATE m_vipcard_setting SET val = '$adminname' WHERE skey = 'adminname'");
+			if($adminpassword){
+				DB::query("UPDATE m_vipcard_setting SET val = '$adminpassword' WHERE skey = 'adminpassword'");
+			}
+			$res['code']="1";
+			$res['msg']="编辑成功";
+			echo json_encode($res);
+		break;
+	case 'editvip':
+		unset($_POST['m']);
+		$vipsetting = serialize($_POST);
+		DB::query("UPDATE m_vipcard_setting SET val = '$vipsetting' WHERE skey = 'vipsetting'");
+		$res['code']="1";
+		$res['msg']="编辑成功";
+		echo json_encode($res);
 		break;
 	default:
 		echo json_encode($_POST);

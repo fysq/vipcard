@@ -91,4 +91,3 @@ KindEditor.plugin('baidumap', function(K) {
 		});
 	});
 });
-

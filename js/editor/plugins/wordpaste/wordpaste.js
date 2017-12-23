@@ -49,4 +49,3 @@ KindEditor.plugin('wordpaste', function(K) {
 		iframe[0].contentWindow.focus();
 	});
 });
-

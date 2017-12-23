@@ -159,4 +159,3 @@ KindEditor.plugin('flash', function(K) {
 	};
 	self.clickToolbar(name, self.plugin.flash.edit);
 });
-

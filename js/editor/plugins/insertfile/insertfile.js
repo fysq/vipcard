@@ -136,4 +136,3 @@ KindEditor.plugin('insertfile', function(K) {
 		});
 	});
 });
-

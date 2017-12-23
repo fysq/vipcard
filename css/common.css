@@ -13,6 +13,7 @@ table {border-collapse:collapse;border-spacing:0;}
 .fl{float: left;}
 .w100{width: 100%;display: inline-block;}
 .clear{clear: both;}
+.hide{display: none;}
 
 /*table*/
 .table_{

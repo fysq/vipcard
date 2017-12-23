@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>欢迎使用{CARD_NAME}</title>
+	<title>欢迎使用{$setting['cardname']}会员卡</title>
 	{eval include template("vipcard:app/common_header")}
 	<style>
 		#form{width: 80%;margin: 0 10%;}
 	</style>
 </head>
 <body>
-	<div class="title tc">欢迎体验{CARD_NAME}，首次使用需要激活。</div>
+	<div class="title tc">欢迎使用{$setting['cardname']}会员卡，首次使用需要激活。</div>
 	<div class="tc">
 		<p><img src="{$wx_res['headimgurl']}" alt="" style="border-radius: 50%;width: 30%;"></p>
 		<p>{$wx_res['nickname']}</p>

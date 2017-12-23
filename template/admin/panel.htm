@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理后台</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+	</style>
+	<link rel="stylesheet" type="text/css" href="{PROOT}css/common.css">
+</head>
+	<div class="form_main">
+		<div class="w100">
+			<div class="fml">累计用户</div>
+			<div class="fmr txt">{$allusernum['num']}</div>
+		</div>
+		<div class="w100">
+			<div class="fml">今日新增用户</div>
+			<div class="fmr txt">{$todayusernum['num']}</div>
+		</div>
+		<div class="w100">
+			<div class="fml">累计充值：</div>
+			<div class="fmr txt">{$allcin['num']}</div>
+		</div>
+		<div class="w100">
+			<div class="fml">今日充值：</div>
+			<div class="fmr txt">{$todayin['num']}</div>
+		</div>
+		<div class="w100">
+			<div class="fml">累计消费：</div>
+			<div class="fmr txt">{$allcpay['num']}</div>
+		</div>
+		<div class="w100">
+			<div class="fml">今日消费：</div>
+			<div class="fmr txt">{$todaypay['num']}</div>
+		</div>
+	</div>
+</html>

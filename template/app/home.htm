@@ -21,11 +21,12 @@
 </head>
 <body>
 	<div>
-		<div class="c_card_box" style="background-image: url(http://zhonghai.sydoil.com/attachment/images/92/2017/08/A887u5ld5Uiaaz8CDu8dn1pU4VL8LP.jpg);">
-			<img src="http://weixin.sydoil.com/attachment/images/92/2017/07/jC5Pv6Vg9LPdtLQ6g2X9YCXcxI5Y26.png" class="c_card_img1">
-			<div class="c_card_txt1" style="color:#ffffff">中海石化</div>
-			<div class="c_card_txt2" style="color:#d9d9d9"><span>默认会员组</span></div>
-			<div class="c_card_txt3" style="color:#ffffff">持卡人：{$uinfo['uname']}</div>
+		<div class="c_card_box" style="background-image: url({$setting['cardbg']});">
+			<img src="{$wx_res['headimgurl']}" class="c_card_img1">
+			<!-- <img src="{$setting['cardlogo']}" class="c_card_img1"> -->
+			<!-- <div class="c_card_txt1" style="color:#ffffff">{$setting['cardname']}</div> -->
+			<div class="c_card_txt1" style="color:#ffffff">持卡人：{$uinfo['uname']}</div>
+			<div class="c_card_txt2" style="color:#d9d9d9"><span>{$setting['vipsetting'][vipname][$uinfo['groupid']]}</span></div>
 			<div class="c_card_txt4" style="color:#ffffff">NO.{$uinfo['vipid']}</div>
 		</div>
 
@@ -41,7 +42,7 @@
 		<div class="weui-grids funlist">
 		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="chargecode('{$uinfo[uid]}')">
 		    <div class="weui-grid__icon">
-		      <img src="{PROOT}images/icon.jpg" alt="">
+		      <img src="{PROOT}images/icon1/1.png" alt="">
 		    </div>
 		    <p class="weui-grid__label">
 		      充值中心
@@ -49,7 +50,7 @@
 		  </a>
 		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="fukuancode('{$uinfo[uid]}')">
 		    <div class="weui-grid__icon">
-		      <img src="{PROOT}images/icon.jpg" alt="">
+		      <img src="{PROOT}images/icon1/2.png" alt="">
 		    </div>
 		    <p class="weui-grid__label">
 		      付款码
@@ -57,15 +58,15 @@
 		  </a>
 		  <a href="{AROOT}&a=payrecord" class="weui-grid js_grid">
 		    <div class="weui-grid__icon">
-		      <img src="{PROOT}images/icon.jpg" alt="">
+		      <img src="{PROOT}images/icon1/3.png" alt="">
 		    </div>
 		    <p class="weui-grid__label">
-		      消费记录
+		      余额流水
 		    </p>
 		  </a>
 		  <a href="{AROOT}&a=pointrecord" class="weui-grid js_grid">
 		    <div class="weui-grid__icon">
-		      <img src="{PROOT}images/icon.jpg" alt="">
+		      <img src="{PROOT}images/icon1/4.png" alt="">
 		    </div>
 		    <p class="weui-grid__label">
 		      积分记录
@@ -74,7 +75,7 @@
 		  <!-- <a href="{AROOT}&a=pointmall" class="weui-grid js_grid" onclick="pointmall()"> -->
 		  <a href="javascript:void(0)" class="weui-grid js_grid" onclick="pointmall()">
 		    <div class="weui-grid__icon">
-		      <img src="{PROOT}images/icon.jpg" alt="">
+		      <img src="{PROOT}images/icon1/5.png" alt="">
 		    </div>
 		    <p class="weui-grid__label">
 		      积分兑换
@@ -82,7 +83,7 @@
 		  </a>
 		  <a href="{AROOT}&a=shopinfo" class="weui-grid js_grid">
 		    <div class="weui-grid__icon">
-		      <img src="{PROOT}images/icon.jpg" alt="">
+		      <img src="{PROOT}images/icon1/6.png" alt="">
 		    </div>
 		    <p class="weui-grid__label">
 		      店铺信息

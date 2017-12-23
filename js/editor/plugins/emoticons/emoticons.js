@@ -127,4 +127,3 @@ KindEditor.plugin('emoticons', function(K) {
 		createPageTable(currentPageNum);
 	});
 });
-

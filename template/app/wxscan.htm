@@ -50,6 +50,12 @@
 		    </div>
 		    <div class="weui-cell__ft">{$uinfo['balance']}</div>
 		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>会员组</p>
+		    </div>
+		    <div class="weui-cell__ft">{$setting['vipsetting']['vipname'][$uinfo['groupid']]}</div>
+		  </div>
 		</div>
 
 		<input type="hidden" class="uid" value="{$uid}">
@@ -146,6 +152,12 @@
 		    </div>
 		    <div class="weui-cell__ft">{$uinfo['balance']}</div>
 		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__bd">
+		      <p>会员组</p>
+		    </div>
+		    <div class="weui-cell__ft">{$setting['vipsetting']['vipname'][$uinfo['groupid']]}</div>
+		  </div>
 		</div>
 
 		<input type="hidden" class="uid" value="{$uid}">
@@ -161,7 +173,7 @@
 		  <div class="weui-cell">
 		    <div class="weui-cell__hd"><label class="weui-label">优惠折扣</label></div>
 		    <div class="weui-cell__bd">
-		      <div class="zk">0.88</div>
+		      <div class="zk">{$setting['vipsetting'][vipzk][$uinfo['groupid']]}</div>
 		    </div>
 		  </div>
 		  <div class="weui-cell">
@@ -179,7 +191,7 @@
 		  <div class="weui-cell">
 		    <div class="weui-cell__hd"><label class="weui-label">可获得积分</label></div>
 		    <div class="weui-cell__bd">
-		    	<input type="hidden" class="pointbl" value="10">
+		    	<input type="hidden" class="pointbl" value="{$setting['pointbl']}">
 		      <div class="pointget">0</div>
 		    </div>
 		  </div>

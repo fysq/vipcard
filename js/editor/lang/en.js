@@ -73,6 +73,8 @@ KindEditor.lang({
 	deleteMedia : 'Delete media',
 	editLink : 'Link properties',
 	deleteLink : 'Unlink',
+	editAnchor : 'Anchor properties',
+	deleteAnchor : 'Delete Anchor',
 	tableprop : 'Table properties',
 	tablecellprop : 'Cell properties',
 	tableinsert : 'Insert table',
@@ -231,4 +233,9 @@ KindEditor.lang({
 	}
 }, 'en');
 
-
+KindEditor.each(KindEditor.options.items, function(i, name) {
+	if (name == 'baidumap') {
+		KindEditor.options.items[i] = 'map';
+	}
+});
+KindEditor.options.langType = 'en';

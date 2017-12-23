@@ -52,4 +52,3 @@ KindEditor.plugin('autoheight', function(K) {
 * 由此就实现了真正的自动高度
 * 测试：chrome、firefox、IE9、IE8
 * */
-

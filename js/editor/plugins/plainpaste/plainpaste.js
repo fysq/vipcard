@@ -39,4 +39,3 @@ KindEditor.plugin('plainpaste', function(K) {
 		textarea[0].focus();
 	});
 });
-

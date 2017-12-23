@@ -36,4 +36,3 @@ KindEditor.plugin('lineheight', function(K) {
 		});
 	});
 });
-

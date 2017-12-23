@@ -135,4 +135,3 @@ $result['file_list'] = $file_list;
 header('Content-type: application/json; charset=UTF-8');
 $json = new Services_JSON();
 echo $json->encode($result);
-

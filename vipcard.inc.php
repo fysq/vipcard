@@ -31,8 +31,22 @@ switch ($a) {
 		$isadmin  = DB::fetch_first("SELECT COUNT(id) AS num FROM m_vipcard_setting WHERE skey='adminlist' AND val LIKE '%".$admininfo['phone']."%'");
 		include template("vipcard:app/wxscan");
 		break;
+	case 'payrecord':
+		$uinfo = DB::fetch_first("SELECT * FROM m_vipcard_uinfo WHERE wxid = '$wx_res[openid]'");
+		$list  = DB::fetch_all("SELECT * FROM m_vipcard_chargelist WHERE uid='$uinfo[uid]' ORDER BY addtime DESC"); 
+		$allin = DB::fetch_first("SELECT SUM(cnum) AS num FROM m_vipcard_chargelist WHERE uid='$uinfo[uid]' AND cnum>0"); 
+		$allpay= DB::fetch_first("SELECT SUM(cnum) AS num FROM m_vipcard_chargelist WHERE uid='$uinfo[uid]' AND cnum<0");
+		include template("vipcard:app/".$a);
+		break;
+	case 'pointrecord':
+		$uinfo = DB::fetch_first("SELECT * FROM m_vipcard_uinfo WHERE wxid = '$wx_res[openid]'");
+		$list  = DB::fetch_all("SELECT * FROM m_vipcard_chargelist WHERE uid='$uinfo[uid]' ORDER BY addtime DESC"); 
+		$allin = DB::fetch_first("SELECT SUM(pnum) AS num FROM m_vipcard_chargelist WHERE uid='$uinfo[uid]' AND pnum>0"); 
+		$allpay= DB::fetch_first("SELECT SUM(pnum) AS num FROM m_vipcard_chargelist WHERE uid='$uinfo[uid]' AND pnum<0");
+		include template("vipcard:app/".$a);
+		break;
 	default:
-		# code...
+		include template("vipcard:app/".$a);
 		break;
 }
 

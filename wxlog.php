@@ -1,6 +1,8 @@
 <?php 
 session_start();
-
+// session_destroy();
+// var_dump($_SESSION);
+// exit();
 define("APPID","wxc2b4906541e812c6");
 define("SECRET","b702f0cd52f11f13668e52450969a6ac");
 // define("SCOPE","snsapi_base");
@@ -38,6 +40,7 @@ if(empty($wx_res) || $wx_log_type_now != SCOPE){
     header("Location:".$state);
 }
 
+// print_r($wx_res);exit;
 // $wx_res = Array(
 //     'openid' => 'o-MQIuHyjJdknxd7tfBDdcTMXvSI',
 //     'nickname' => '是短发是',

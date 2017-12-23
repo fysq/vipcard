@@ -25,4 +25,3 @@ KindEditor.plugin('pagebreak', function(K) {
 		}
 	});
 });
-

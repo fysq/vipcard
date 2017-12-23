@@ -187,4 +187,3 @@ KindEditor.plugin('filemanager', function(K) {
 	}
 
 });
-

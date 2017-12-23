@@ -168,4 +168,3 @@ KindEditor.plugin('media', function(K) {
 	};
 	self.clickToolbar(name, self.plugin.media.edit);
 });
-

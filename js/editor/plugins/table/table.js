@@ -710,4 +710,3 @@ KindEditor.plugin('table', function(K) {
 	};
 	self.clickToolbar(name, self.plugin.table.prop);
 });
-

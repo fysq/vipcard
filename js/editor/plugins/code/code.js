@@ -60,4 +60,3 @@ KindEditor.plugin('code', function(K) {
 		textarea[0].focus();
 	});
 });
-

@@ -27,4 +27,3 @@ KindEditor.plugin('clearhtml', function(K) {
 		self.addBookmark();
 	});
 });
-

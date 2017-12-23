@@ -326,4 +326,3 @@ KindEditor.plugin('image', function(K) {
 	};
 	self.clickToolbar(name, self.plugin.image.edit);
 });
-

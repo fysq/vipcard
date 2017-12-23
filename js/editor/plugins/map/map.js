@@ -135,4 +135,3 @@ KindEditor.plugin('map', function(K) {
 		});
 	});
 });
-

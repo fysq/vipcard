@@ -44,4 +44,3 @@ KindEditor.plugin('anchor', function(K) {
 	};
 	self.clickToolbar(name, self.plugin.anchor.edit);
 });
-

@@ -15,11 +15,11 @@
 	<form id="st1" class="form_main">
 		<div class="w100">
 			<div class="fml">登录账号：</div>
-			<div class="fmr"><input name="adminname" type="text"  class="input_text_default" value="{$setting['adminname']}"></div>
+			<div class="fmr"><input name="adminname" type="text"  class="input_text_default adminname" value="{$setting['adminname']}"></div>
 		</div>
 		<div class="w100">
 			<div class="fml">登录密码：</div>
-			<div class="fmr"><input name="adminpassword" type="text"  class="input_text_default" placeholder="留空不变"></div>
+			<div class="fmr"><input name="adminpassword" type="text"  class="input_text_default adminpassword" placeholder="留空不变"></div>
 		</div>
 		<div>
 			<div class="fml"></div>
@@ -59,6 +59,26 @@
 			<div class="fmr"><input name="cardname" type="text"  class="input_text_default cardname" value="{$setting['cardname']}"></div>
 		</div>
 		<div class="w100">
+			<div class="fml">会员卡背景图</div>
+			<div class="fmr">
+				{eval echo adminimgupload('cardbg',$setting['cardbg'])}
+			</div>
+		</div>
+		<div class="w100 hide">
+			<div class="fml">会员卡LOGO</div>
+			<div class="fmr">
+				{eval echo adminimgupload('cardlogo',$setting['cardlogo'])}
+			</div>
+		</div>
+		<div class="w100">
+			<div class="fml">店铺名称</div>
+			<div class="fmr"><input name="shopname" type="text"  class="input_text_default shopname" value="{$setting['shopname']}"></div>
+		</div>
+		<div class="w100">
+			<div class="fml">店铺地址</div>
+			<div class="fmr"><input name="shopaddress" type="text"  class="input_text_default shopaddress" value="{$setting['shopaddress']}"></div>
+		</div>
+		<div class="w100">
 			<div class="fml">消费积分比例</div>
 			<div class="fmr"><input name="pointbl" type="text"  class="input_text_default pointbl" value="{$setting['pointbl']}"></div>
 		</div>
@@ -77,25 +97,27 @@
 				<td>升级消耗积分</td>
 				<td>优惠折扣</td>
 			</tr>
-			{eval $viplist = json_decode($setting['viplist'],true)}
-			{loop $viplist $k $v}
+			{eval $vipsetting = unserialize($setting['vipsetting'])}
+			{loop $vipsetting['vipname'] $k $v}
+			{if !empty($v)}
 			<tr>
-				<td>1</td>
-				<td><input type="text" name="vipname[]" value="默认会员组"></td>
-				<td><input type="text" name="vippoint[]" value="0"></td>
-				<td><input type="text" name="vipzk[]" value="0.88"></td>
+				<td>{eval echo $k+1}</td>
+				<td><input type="text" name="vipname[]" value="{$vipsetting['vipname'][$k]}"></td>
+				<td><input type="text" name="vippoint[]" value="{$vipsetting['vippoint'][$k]}"></td>
+				<td><input type="text" name="vipzk[]" value="{$vipsetting['vipzk'][$k]}"></td>
 			</tr>
+			{/if}
 			{/loop}
-			<tr>
-				<td></td>
+<!-- 			<tr>
+				<td>新增</td>
 				<td><input type="text" name="vipname[]" placeholder="会员组名称"></td>
 				<td><input type="text" name="vippoint[]" placeholder=""></td>
 				<td><input type="text" name="vipzk[]" placeholder=""></td>
-			</tr>
+			</tr> -->
 		</table>
 		<div>
 			<div class="fml"></div>
-			<div class="fmr"><input type="button" class="admin_submit sub5" value="提交"></div>
+			<div class="fmr"><input type="button" class="admin_submit sub4" value="提交"></div>
 		</div>
 	</form>
 	<div class="clear"></div>
@@ -113,7 +135,20 @@
 	
 
 	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script src="{PROOT}js/function.js"></script>
+	<script src="{PROOT}js/ajaxfileupload.js"></script>
 	<script>
+		// 新增管理员
+		$(".sub1").click(function(){
+			adminname = $("#st1").find(".adminname").val().trim();
+			adminpassword = $("#st1").find(".adminpassword").val().trim();
+			$.post('{AJAX}',{m:"editadmin",adminname:adminname,adminpassword:adminpassword}, function(e) {
+				alert(e.msg);
+				if(e.code=="1"){
+					location.reload();
+				}
+			},'json');
+		});
 		// 新增管理员
 		$(".sub2").click(function(){
 			addphone = $("#st2").find(".addphone").val().trim();
@@ -128,14 +163,29 @@
 		$(".sub3").click(function(){
 			cardname = $("#st3").find(".cardname").val().trim();
 			pointbl = $("#st3").find(".pointbl").val().trim();
-			$.post('{AJAX}',{m:"editbase",cardname:cardname,pointbl:pointbl}, function(e) {
+			shopname = $("#st3").find(".shopname").val().trim();
+			shopaddress = $("#st3").find(".shopaddress").val().trim();
+			cardbg = $("#st3").find(".cardbg").val().trim();
+			cardlogo = $("#st3").find(".cardlogo").val().trim();
+			$.post('{AJAX}',{m:"editbase",cardname:cardname,pointbl:pointbl,shopname:shopname,shopaddress:shopaddress,cardbg:cardbg,cardlogo:cardlogo}, function(e) {
 				alert(e.msg);
 				if(e.code=="1"){
 					location.reload();
 				}
 			},'json');
 		});
-
+		// 会员组设置
+		$(".sub4").click(function(){
+			data=$("#st4").serialize();
+			data+="&m=editvip";
+			$.post('{AJAX}',data, function(e) {
+				console.log(e);
+				alert(e.msg);
+				if(e.code=="1"){
+					location.reload();
+				}
+			},'json');
+		});
 		// 店铺设置
 		$(".sub5").click(function(){
 			editor.sync();
@@ -160,8 +210,8 @@
 			}
 		});
 	</script>
-	<script src="{PROOT}js/editor/kindeditor.js"></script>
-	<script src="{PROOT}js/editor/lang/zh_CN.js"></script>
+	<script src="{PROOT}js/editor/kindeditor-all-min.js" charset="UTF-8"></script>
+	<script src="{PROOT}js/editor/lang/zh-CN.js" charset="UTF-8"></script>
 	<script>
 		KindEditor.ready(function(K) {
 		        window.editor = K.create('#shopinfo');

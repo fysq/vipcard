@@ -64,4 +64,3 @@ KindEditor.plugin('link', function(K) {
 	};
 	self.clickToolbar(name, self.plugin.link.edit);
 });
-

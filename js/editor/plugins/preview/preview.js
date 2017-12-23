@@ -29,4 +29,3 @@ KindEditor.plugin('preview', function(K) {
 		iframe[0].contentWindow.focus();
 	});
 });
-

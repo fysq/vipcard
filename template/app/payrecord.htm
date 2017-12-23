@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$setting['shopname']}</title>
+	{eval include template("vipcard:app/common_header")}
+	<style>
+		.content .s{width: 50%;text-align: center;color: orange;float: left;}
+		.topbar{width: 100%;height: 50px;}
+		.back{position: absolute;left:15px;line-height: 50px;font-size: 30px;color: white;}
+		.title{background-color: #00bcd4;text-align: center;color: white;font-size: 30px;line-height: 50px;}
+	</style>
+</head>
+<body>
+	<div class="topbar">
+		<div class="back" onclick="history.go(-1)"><</div>
+		<div class="title">余额流水</div>
+	</div>
+	<div class="w100 content">
+		<div class="s">累计充值：{$allin['num']}</div>
+		<div class="s">累计消费：{$allpay['num']}</div>
+		<div class="clear"></div>
+		<!-- 剩余余额：{$uinfo['balance']} -->
+		{loop $list $k $v}
+		<div class="weui-form-preview">
+		  <div class="weui-form-preview__hd">
+		    <label class="weui-form-preview__label">操作金额</label>
+		    <em class="weui-form-preview__value" style="color:{if $v['cnum']>0}green{else}red{/if}">{$v['cnum']}</em>
+		  </div>
+		  <div class="weui-form-preview__bd">
+		    <div class="weui-form-preview__item">
+		      <label class="weui-form-preview__label">操作方式</label>
+		      <span class="weui-form-preview__value">{$v['ctype']}</span>
+		    </div>
+		    <div class="weui-form-preview__item">
+		      <label class="weui-form-preview__label">操作时间</label>
+		      <span class="weui-form-preview__value">{eval echo date('Y-m-d H:i:s',$v['addtime'])}</span>
+		    </div>
+		    <div class="weui-form-preview__item">
+		      <label class="weui-form-preview__label">流水编号</label>
+		      <span class="weui-form-preview__value">{$v['lscode']}</span>
+		    </div>
+		  </div>
+		</div>
+		<br>
+		{/loop}
+	</div>
+</body>
+</html>

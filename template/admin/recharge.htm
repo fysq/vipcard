@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理后台</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+	</style>
+	<link rel="stylesheet" type="text/css" href="{PROOT}css/common.css">
+</head>
+<!-- 	<div class="form_main">
+		<div class="w100">
+			<div class="fml">累计充值：</div>
+			<div class="fmr txt">{$allin['num']}</div>
+		</div>
+		<div class="w100">
+			<div class="fml">累计消费：</div>
+			<div class="fmr txt">{$allpay['num']}</div>
+		</div>
+	</div> -->
+	<table class="table_">
+		<tr>
+			<td>序号</td>
+			<td>卡号</td>
+			<td>流水号</td>
+			<td>姓名</td>
+			<td>数量</td>
+			<td>充值方式</td>
+			<td>充值时间</td>
+		</tr>
+		{loop $list $k $v}
+		<tr>
+			<td>{eval echo ($k+1)}</td>
+			<td>{$v['vipid']}</td>
+			<td>{$v['lscode']}</td>
+			<td>{$v['uname']}</td>
+			<td>{$v['cnum']}</td>
+			<td>{$v['ctype']}</td>
+			<td>{eval echo date("Y-m-d H:i:s",$v['addtime'])}</td>
+		</tr>
+		{/loop}
+	</table>
+</html>
