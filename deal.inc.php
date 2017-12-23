@@ -10,7 +10,7 @@ switch ($m) {
 	case 'reg':
 		$ex = DB::fetch_first("SELECT COUNT(uid) AS num FROM m_vipcard_uinfo WHERE phone = '$phone'");
 		if($ex['num']=="0"){
-			DB::query("INSERT INTO m_vipcard_uinfo VALUES('','$phone','$wxid','$uname','$phone','$sex','$birthday','0','0','0','".time()."','1')");
+			DB::query("INSERT INTO m_vipcard_uinfo VALUES('','$phone','$wxid','$uname','$phone','$sex','$birthday','0','0','0','".time()."','0')");
 			$res['code']="1";
 			$res['msg']="激活成功";
 		}else{
